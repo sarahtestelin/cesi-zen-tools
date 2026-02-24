@@ -1,3 +1,6 @@
 [submodule "front"]
 	path = front
 	url = https://github.com/sarahtestelin/cesi-zen-front.git
+[submodule "back"]
+	path = back
+	url = https://github.com/sarahtestelin/cesi-zen-back.git
