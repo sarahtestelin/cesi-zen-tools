@@ -4,3 +4,6 @@
 [submodule "back"]
 	path = back
 	url = https://github.com/sarahtestelin/cesi-zen-back.git
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/sarahtestelin/cesi-zen-mobile.git
