@@ -3,8 +3,8 @@ services:
     image: postgres:16
     container_name: cesi-zen-postgres
     environment:
-      POSTGRES_DB: rrDb
-      POSTGRES_USER: rruser
+      POSTGRES_DB: cesizenDb
+      POSTGRES_USER: cesizenUser
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
@@ -18,8 +18,8 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/rrDb
-      SPRING_DATASOURCE_USERNAME: rruser
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cesizenDb
+      SPRING_DATASOURCE_USERNAME: cesizenUser
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
     ports:
