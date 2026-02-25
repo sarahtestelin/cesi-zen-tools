@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16
+    container_name: cesi-zen-postgres
+    environment:
+      POSTGRES_DB: rrDb
+      POSTGRES_USER: rruser
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  back:
+    build:
+      context: ../cesi-zen-back
+    container_name: cesi-zen-back
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/rrDb
+      SPRING_DATASOURCE_USERNAME: rruser
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+    ports:
+      - "8081:8080"
+
+  front:
+    build:
+      context: ../cesi-zen-front
+    container_name: cesi-zen-front
+    depends_on:
+      - back
+    ports:
+      - "4300:80"
+
+volumes:
+  db_data:
