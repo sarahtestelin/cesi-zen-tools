@@ -28,7 +28,7 @@ services:
 
   back:
     build:
-      context: ../cesi-zen-back
+      context: ${BACK_CONTEXT:-../cesi-zen-back}
 
     container_name: cesi-zen-back
 
@@ -61,7 +61,7 @@ services:
 
   front:
     build:
-      context: ../cesi-zen-front
+      context: ${FRONT_CONTEXT:-../cesi-zen-front}
 
     container_name: cesi-zen-front
 
