@@ -28,7 +28,11 @@ pipeline {
                     sh '''
                         BACK_CONTEXT="$WORKSPACE/back-src" \
                         FRONT_CONTEXT="$WORKSPACE/front-src" \
-                        docker compose --env-file "$ENV_FILE" up -d --build
+                        docker compose \
+                            -p cesi-zen-tools \
+                            --env-file "$ENV_FILE" \
+                            up -d --build --wait --wait-timeout 120 \
+                            db back front
                     '''
                 }
             }
@@ -36,7 +40,7 @@ pipeline {
 
         stage('Verify') {
             steps {
-                sh 'docker compose ps'
+                sh 'docker ps --filter "name=cesi-zen-"'
                 sh 'curl --fail http://localhost:8081/actuator/health'
                 sh 'curl --fail http://localhost:4300/'
             }
