@@ -44,6 +44,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
 
       SSL_ENABLED: "false"
+      SPRING_PROFILES_ACTIVE: prod
 
     ports:
     - "8081:8080"
