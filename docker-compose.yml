@@ -70,7 +70,7 @@ services:
     - back
 
     ports:
-    - "4300:80"
+    - "4300:8080"
 
 volumes:
   db_data:
