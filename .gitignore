@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+
+.DS_Store
+.idea/
+# JMeter
+performance/results.jtl
+performance/report/
+jmeter.log
+backups/
