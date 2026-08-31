@@ -14,11 +14,11 @@ pipeline {
                 sh '''
                     rm -rf back-src front-src
 
-                    git clone --branch feat/deploy-security \
+                    git clone --branch main \
                         https://github.com/sarahtestelin/cesi-zen-back.git \
                         back-src
 
-                    git clone --branch feat/deploy-security \
+                    git clone --branch main \
                         https://github.com/sarahtestelin/cesi-zen-front.git \
                         front-src
                 '''
