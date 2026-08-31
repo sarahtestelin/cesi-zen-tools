@@ -50,6 +50,29 @@ pipeline {
                 sh 'curl --fail http://localhost:4300/'
             }
         }
+
+        stage('Performance Test') {
+            steps {
+                sh '''
+                    rm -f jmeter-results.jtl
+
+                    /opt/homebrew/bin/jmeter -n \
+                        -t performance/cesizen-load-test.jmx \
+                        -Jhost=localhost \
+                        -Jport=8081 \
+                        -Jprotocol=http \
+                        -Jthreads=10 \
+                        -Jloops=5 \
+                        -Jjmeter.save.saveservice.output_format=csv \
+                        -l jmeter-results.jtl
+
+                    if grep -q ',false,' jmeter-results.jtl; then
+                        echo "Le test JMeter contient des requêtes en échec."
+                        exit 1
+                    fi
+                '''
+            }
+        }
     }
 
     post {
